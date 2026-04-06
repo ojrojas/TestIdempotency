@@ -1,0 +1,28 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjM1NjMxMTQ1LTNiODMtNDhjNy1iZmJhLTEzNzZkM2E3YzMwYiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzc1NDYzODA3fQ.6Gse9XF307GIjePH22kV1JfJNHAQAzSxC75A691gpBM
+@idempotencyKey = jjuuyyytttertyujhggh
+### API Endpoints
+POST https://localhost:5001/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "Admin123!"
+}
+
+###
+GET https://localhost:5001/api/users
+Authorization: Bearer {{token}}
+
+###
+POST https://localhost:5001/api/users
+Idempotency-Key: {{idempotencyKey}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+Accept: application/json
+Accept: text/plain
+
+{
+  "username": "newuser6",
+  "password": "NewUser123!",
+  "email": "user6@example.com"
+}
