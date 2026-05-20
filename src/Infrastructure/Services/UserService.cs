@@ -1,10 +1,4 @@
-using Application.DTOs;
-using Application.Interfaces;
-using Infrastructure.Identity;
-using Microsoft.AspNetCore.Identity;
-
-namespace Infrastructure.Services
-{
+namespace Infrastructure.Services;
     // User operations implemented with ASP.NET Core Identity.
     public class UserService : IUserService
     {
@@ -82,4 +76,3 @@ namespace Infrastructure.Services
             await _userManager.RemoveFromRoleAsync(user, roleName);
         }
     }
-}

@@ -1,26 +1,20 @@
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Infrastructure.Identity;
-using Domain.Entities;
+namespace Infrastructure.Data;
 
-namespace Infrastructure.Data
+public class AppDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
 {
-    public class AppDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
+    public DbSet<IdempotencyKey> IdempotencyKeys { get; set; } = null!;
+
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+
+    protected override void OnModelCreating(ModelBuilder builder)
     {
-        public DbSet<IdempotencyKey> IdempotencyKeys { get; set; } = null!;
+        base.OnModelCreating(builder);
 
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+        // Use the idempotency key (the header value) as the PK.
+        builder.Entity<IdempotencyKey>().HasKey(k => k.Key);
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-
-            // Use the idempotency key (the header value) as the PK.
-            builder.Entity<IdempotencyKey>().HasKey(k => k.Key);
-
-            // Keep timestamps explicit for portability between providers.
-            builder.Entity<IdempotencyKey>().Property(k => k.CreatedAt).IsRequired();
-            builder.Entity<IdempotencyKey>().Property(k => k.ExpiresAt).IsRequired();
-        }
+        // Keep timestamps explicit for portability between providers.
+        builder.Entity<IdempotencyKey>().Property(k => k.CreatedAt).IsRequired();
+        builder.Entity<IdempotencyKey>().Property(k => k.ExpiresAt).IsRequired();
     }
 }

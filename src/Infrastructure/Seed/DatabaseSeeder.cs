@@ -1,6 +1,4 @@
-using Infrastructure.Identity;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
+
 
 namespace Infrastructure.Seed
 {

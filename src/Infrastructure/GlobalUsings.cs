@@ -1,0 +1,10 @@
+global using Infrastructure.Identity;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore;
+global using Domain.Entities;
+global using Application.Interfaces;
+global using Infrastructure.Data;
+global using Application.DTOs;
+global using System.Security.Claims;

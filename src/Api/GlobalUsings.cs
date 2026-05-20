@@ -1,0 +1,17 @@
+global using Application.Interfaces;
+global using Infrastructure.Data;
+global using Infrastructure.Identity;
+global using Infrastructure.Services;
+global using Infrastructure.Seed;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using Microsoft.IdentityModel.Tokens;
+global using System.Text;
+global using Microsoft.EntityFrameworkCore;
+global using Api.Middleware;
+global using Api.DTOs;
+global using Microsoft.AspNetCore.Identity;
+global using Scalar.AspNetCore;
+global using Microsoft.AspNetCore.Authorization;
+global using Domain.Entities;
+global using System.Security.Cryptography;
+global using System.Text.Json;

@@ -1,11 +1,8 @@
-using Domain.Entities;
+namespace Application.Interfaces;
 
-namespace Application.Interfaces
+public interface IIdempotencyService
 {
-    public interface IIdempotencyService
-    {
-        Task<IdempotencyKey?> GetAsync(string key);
-        Task<bool> TryCreateInProgressAsync(string key, string method, string path, string requestHash, TimeSpan ttl);
-        Task SaveResponseAsync(string key, int status, string headersJson, string responseBody, DateTime expiresAt);
-    }
+    Task<IdempotencyKey?> GetAsync(string key);
+    Task<bool> TryCreateInProgressAsync(string key, string method, string path, string requestHash, TimeSpan ttl);
+    Task SaveResponseAsync(string key, int status, string headersJson, string responseBody, DateTime expiresAt);
 }

@@ -1,18 +1,3 @@
-using Application.Interfaces;
-using Infrastructure.Data;
-using Infrastructure.Identity;
-using Infrastructure.Services;
-using Infrastructure.Seed;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
-using Api.Middleware;
-using Api.DTOs;
-using Microsoft.AspNetCore.Identity;
-using Scalar.AspNetCore;
-using Microsoft.AspNetCore.Authorization;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -68,6 +53,8 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddScoped<IIdempotencyService, IdempotencyService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IRoleService, RoleService>();
+
+builder.Services.AddProblemDetails();
 
 var app = builder.Build();
 
